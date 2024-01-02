@@ -33,22 +33,25 @@ const reactions = [
 
 const emails = ['gmail', 'hotmail', 'yahoo', 'outlook'];
 
-// Gets random item from array
+// Gets random item from array.
 const randomArrayItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-// Returns random user and email associated with them
+// Returns random user and email associated with them.
 const randomUsers = (numUsers) => {
   const usersArray = [];
   for (let i = 0; i < numUsers; i++) {
+    // Only generates random username once so email matches as well.
+    const sameUsername = randomArrayItem(usernames);
+
     usersArray.push({
-      username: randomArrayItem(usernames),
-      email: `${randomArrayItem(usernames)}@${randomArrayItem(emails)}.com`,
+      username: sameUsername,
+      email: `${sameUsername}@${randomArrayItem(emails)}.com`,
     });
   }
   return usersArray;
 };
 
-// Returns random user/reaction
+// Returns random user and reaction.
 const randomReactions = (numReactions) => {
   const reactionsArray = [];
   for (let i = 0; i < numReactions; i++) {
@@ -60,7 +63,7 @@ const randomReactions = (numReactions) => {
   return reactionsArray;
 };
 
-// Returns random thought with 3 random usernames/reactions
+// Returns random thought with 3 random usernames and reactions.
 const randomThoughts = (numThoughts) => {
   const thoughtsArray = [];
   for (let i = 0; i < numThoughts; i++) {
@@ -73,4 +76,4 @@ const randomThoughts = (numThoughts) => {
   return thoughtsArray;
 };
 
-module.exports = { randomUsers, randomReactions, randomThoughts };
+module.exports = { randomUsers, randomThoughts };
