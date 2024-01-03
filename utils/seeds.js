@@ -7,7 +7,6 @@ connection.on('error', (err) => console.error(err));
 
 // Only listens for event listener once, and checks then drops if users db already exists.
 connection.once('open', async () => {
-  console.log('Connected to database.');
   try {
     // Mongoose pluralizes the model names for collection names by default 'User' becomes 'users'.
     let userCheck = await connection.db
@@ -32,6 +31,13 @@ connection.once('open', async () => {
     // Inserts them into users and thoughts collection.
     await User.collection.insertMany(users);
     await Thought.collection.insertMany(thoughts);
+
+    // Console logs the tables.
+    console.table(users);
+    console.table(thoughts);
+
+    // Exits the process.
+    process.exit(0);
   } catch (err) {
     console.error(err);
   }
