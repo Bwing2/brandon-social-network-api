@@ -14,7 +14,7 @@ module.exports = {
   // Finds one thought based off the ID.
   async getSingleThought(req, res) {
     try {
-      const thought = await Thought.findOne({ _id: req.params.id });
+      const thought = await Thought.findOne({ _id: req.params.thoughtId });
 
       // Need this as a check if no document was found with that ID, or null will be returned.
       if (!thought) {
@@ -29,7 +29,7 @@ module.exports = {
     }
   },
 
-  // Creates a thought
+  // Creates a thought.
   async createThought(req, res) {
     try {
       const thought = await Thought.create(req.body);
@@ -40,10 +40,12 @@ module.exports = {
     }
   },
 
-  // Deletes a thought by ID
+  // Deletes a thought by ID.
   async deleteThought(req, res) {
     try {
-      const thought = await Thought.findOneAndDelete({ _id: req.params.id });
+      const thought = await Thought.findOneAndDelete({
+        _id: req.params.thoughtId,
+      });
 
       if (!thought) {
         return res
@@ -58,12 +60,12 @@ module.exports = {
     }
   },
 
-  // Updates a thought by ID
+  // Updates a thought by ID.
   async updateThought(req, res) {
     try {
       const thought = await Thought.findOneAndUpdate(
         // Filter object
-        { _id: req.params.id },
+        { _id: req.params.thoughtId },
         // Update object uses $set to update fields that match in 'req.body'.
         { $set: req.body },
         // 'runValidators: true' will have Mongoose run validators for updates since it doesn't by default.
@@ -87,7 +89,6 @@ module.exports = {
   async createThoughtReaction(req, res) {
     try {
       const reaction = await Thought.findOneAndUpdate(
-        // Uses 'thoughtId' as parameter since the route is different. '/api/thoughts/:thoughtId/reactions'.
         { _id: req.params.thoughtId },
         // '$addToSet' is another update operator that doesn't allow for duplicate values to an array.
         // 'reactions:' is used since it is the array field from the 'Thought' document that we are changing.
@@ -111,8 +112,8 @@ module.exports = {
     try {
       const reaction = await Thought.findOneAndDelete(
         { _id: req.params.thoughtId },
-        // '$pull' operator is used to remove something from an array that matches the conditions.
-        { $pull: { reactions: req.params.reactionId } },
+        // '$pull' operator is used to remove something from the 'reactions' array where 'reactionId' matches 'req.params.reactionId'.
+        { $pull: { reactionsId: req.params.reactionId } },
         { runValidators: true, new: true }
       );
 
