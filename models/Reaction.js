@@ -1,5 +1,5 @@
 // Imports Schema and Types functions from mongoose.
-//Types is used when type of fields needs to be defined. Only have to import Types if using Types.ObjectId() specifically, otherwise Schema.Types.ObjectId works with imported model function.
+// Types is used when type of fields needs to be defined. Only have to import Types if using Types.ObjectId() specifically, otherwise Schema.Types.ObjectId works with imported model function.
 const { Schema, Types } = require('mongoose');
 
 // Schema only (no model) that is used for reference for thoughtsSchema.
