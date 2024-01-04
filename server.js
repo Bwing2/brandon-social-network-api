@@ -8,7 +8,7 @@ const PORT = (process.env.PORT = 3001);
 const app = express();
 
 // Middleware to parse URL-encoded requests, and JSON formatting
-app.use(express.urlencoded({ entended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Allows use of routes that were imported above
