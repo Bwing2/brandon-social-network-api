@@ -1,4 +1,4 @@
-const { Thought } = require('../models/Thought');
+const Thought = require('../models/Thought');
 
 module.exports = {
   // Finds all thoughts and returns them as json.
@@ -110,7 +110,7 @@ module.exports = {
   // Deletes reaction based off the reactionId value.
   async deleteThoughtReaction(req, res) {
     try {
-      const reaction = await Thought.findOneAndDelete(
+      const reaction = await Thought.findOneAndUpdate(
         { _id: req.params.thoughtId },
         // '$pull' operator is used to remove something from the 'reactions' array where 'reactionId' matches 'req.params.reactionId'.
         { $pull: { reactionsId: req.params.reactionId } },

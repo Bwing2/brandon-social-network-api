@@ -28,10 +28,16 @@ const reactionSchema = new Schema(
   },
   {
     toJSON: {
+      // Getters let you format/manipulate data for use
+      // Getters also aren't included by default so have to set to true.
       getters: true,
     },
     id: false,
   }
 );
+
+reactionSchema.virtual('dateCreatedAt').get(function () {
+  return this.createdAt.toLocaleString();
+});
 
 module.exports = reactionSchema;
