@@ -36,18 +36,27 @@ const emails = ['gmail', 'hotmail', 'yahoo', 'outlook'];
 // Gets random item from array.
 const randomArrayItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-// Returns random user and email associated with them.
 const randomUsers = (numUsers) => {
   const usersArray = [];
+  // Create a copy of the usernames array
+  const usernamesCopy = [...usernames];
+
   for (let i = 0; i < numUsers; i++) {
-    // Only generates random username once so email matches as well.
-    const sameUsername = randomArrayItem(usernames);
+    // Gets a random index number from the copied array
+    const index = Math.floor(Math.random() * usernamesCopy.length);
+
+    // Selects current index number
+    const sameUsername = usernamesCopy[index];
 
     usersArray.push({
       username: sameUsername,
       email: `${sameUsername}@${randomArrayItem(emails)}.com`,
     });
+
+    // Remove the used username from the array so it isn't repeated.
+    usernamesCopy.splice(index, 1);
   }
+
   return usersArray;
 };
 
