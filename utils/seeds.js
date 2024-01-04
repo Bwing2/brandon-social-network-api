@@ -25,8 +25,8 @@ connection.once('open', async () => {
     }
 
     // Generates random users and thoughts.
-    const users = randomUsers(8);
-    const thoughts = randomThoughts(8);
+    const users = randomUsers(5);
+    const thoughts = randomThoughts(5);
 
     // Inserts them into users and thoughts collection.
     await User.collection.insertMany(users);
