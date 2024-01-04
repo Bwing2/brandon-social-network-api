@@ -38,7 +38,7 @@ const randomArrayItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 const randomUsers = (numUsers) => {
   const usersArray = [];
-  // Create a copy of the usernames array
+  // Create a copy of the usernames array using spread operator so original data isnt deleted.
   const usernamesCopy = [...usernames];
 
   for (let i = 0; i < numUsers; i++) {
