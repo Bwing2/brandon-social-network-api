@@ -27,16 +27,14 @@ const thoughtSchema = new Schema(
       // Virtuals are properties not stored in MongoDB, used for computed properties.
       // Virtuals aren't included in JSON by default so have to set to true.
       virtuals: true,
-      // Getters let you format/manipulate data for use
-      // Getters also aren't included by default so have to set to true.
-      getters: true,
     },
+    id: false,
   }
 );
 
 // Virtual that retrieves length of specific user reactions array
 thoughtSchema.virtual('reactionCount').get(function () {
-  return `${this.reactions.length}`;
+  return this.reactions.length;
 });
 
 // Initializes thought model

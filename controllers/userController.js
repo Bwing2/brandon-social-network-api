@@ -1,4 +1,4 @@
-const { User } = require('../models/User');
+const User = require('../models/User');
 
 module.exports = {
   // Finds all users.
@@ -97,9 +97,10 @@ module.exports = {
     }
   },
 
+  // Deletes friend from a specific user
   async deleteFriend(req, res) {
     try {
-      const friend = await User.findOneAndDelete(
+      const friend = await User.findOneAndUpdate(
         { _id: req.params.userId },
         { $pull: { friends: req.params.friendId } },
         { runValidators: true, new: true }

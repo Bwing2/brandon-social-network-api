@@ -14,6 +14,12 @@ app.use(express.json());
 // Allows use of routes that were imported above
 app.use(routes);
 
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something went wrong!');
+});
+
 // Event listener for request of specific port when database is connected
 db.once('open', () => {
   app.listen(PORT, () => {
