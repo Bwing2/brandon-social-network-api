@@ -113,7 +113,7 @@ module.exports = {
       const reaction = await Thought.findOneAndUpdate(
         { _id: req.params.thoughtId },
         // '$pull' operator is used to remove something from the 'reactions' array where 'reactionId' matches 'req.params.reactionId'.
-        { $pull: { reactionsId: req.params.reactionId } },
+        { $pull: { reactions: { reactionId: req.params.reactionId } } },
         { runValidators: true, new: true }
       );
 

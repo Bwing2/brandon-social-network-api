@@ -1,6 +1,6 @@
 // Imports Schema and model functions from mongoose
 const { Schema, model } = require('mongoose');
-const reactionSchema = require('./Reaction');
+const Reaction = require('./Reaction');
 
 // New schema for thoughtsSchema
 const thoughtSchema = new Schema(
@@ -20,7 +20,7 @@ const thoughtSchema = new Schema(
       required: true,
     },
     // Array of nested/subdocuments documents from reactionSchema in Reaction.js.
-    reactions: [reactionSchema],
+    reactions: [Reaction],
   },
   {
     toJSON: {
