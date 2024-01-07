@@ -36,8 +36,4 @@ const reactionSchema = new Schema(
   }
 );
 
-reactionSchema.virtual('dateCreatedAt').get(function () {
-  return this.createdAt.toLocaleString();
-});
-
 module.exports = reactionSchema;

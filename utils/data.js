@@ -60,6 +60,10 @@ const randomUsers = (numUsers) => {
   return usersArray;
 };
 
+// const random Friends = (numUsers) => {
+//   const friendsArray = [];
+
+// }
 // Returns random user and reaction.
 const randomReactions = (numReactions) => {
   const reactionsArray = [];
